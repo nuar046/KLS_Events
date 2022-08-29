@@ -1,0 +1,1 @@
+Service-Component: OSGI-INF/KLS_FA_Transfer_DtDocEvent.xml,OSGI-INF/KLS_FA_Transfer_DtModelFactory.xml

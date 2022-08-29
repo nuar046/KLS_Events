@@ -1,0 +1,6 @@
+<extension id="org.my.process.MY_Process"
+  point="org.adempiere.base.Process">
+	<process
+		class="org.my.process.MY_Process">
+	</process>
+</extension>
