@@ -34,13 +34,6 @@ public class MKLS_FA_Transfer extends X_KLS_FA_Transfer implements DocAction {
 
 		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public void setDocStatus(String newStatus) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 	/**	Process Message 			*/
 	private String		m_processMsg = null;
@@ -109,8 +102,7 @@ public class MKLS_FA_Transfer extends X_KLS_FA_Transfer implements DocAction {
 
 
 	@Override
-	public boolean approveIt() {
-		// TODO Auto-generated method stub
+	public boolean approveIt() { 
 		if (log.isLoggable(Level.INFO)) log.info("approveIt - " + toString());
 
 			setIsApproved(true);
@@ -169,7 +161,8 @@ public class MKLS_FA_Transfer extends X_KLS_FA_Transfer implements DocAction {
 			return DocAction.STATUS_Invalid;
 
 		}
-  
+		//
+		setProcessed(true); 
 		return STATUS_Completed;
 
 	}
@@ -341,16 +334,7 @@ public class MKLS_FA_Transfer extends X_KLS_FA_Transfer implements DocAction {
 	public int getDoc_User_ID() {
 		return getCreatedBy();
 
-	}
-
-
-	@Override
-	public int getC_Currency_ID() {
-		// TODO Auto-generated method stub
-		return 0;
-
-	}
-
+	} 
 
 	@Override
 	public BigDecimal getApprovalAmt() {

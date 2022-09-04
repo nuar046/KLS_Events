@@ -19,7 +19,7 @@ public class KLS_FA_TransferDocEvent extends AbstractEventHandler {
 
 	@Override 
 	protected void initialize() { 
-		registerTableEvent(IEventTopics.DOC_BEFORE_COMPLETE, MKLS_FA_Transfer.Table_Name);
+		registerTableEvent(IEventTopics.DOC_AFTER_COMPLETE, MKLS_FA_Transfer.Table_Name);
 		registerTableEvent(IEventTopics.DOC_AFTER_COMPLETE, MInvoice.Table_Name);
 		log.info("KLS_FA_Transfer<PLUGIN> .. IS NOW INITIALIZED");
 		}
@@ -34,6 +34,7 @@ public class KLS_FA_TransferDocEvent extends AbstractEventHandler {
 			setTrxName(po.get_TrxName());
 			log.info(" topic="+event.getTopic()+" po="+po);
 		if (po instanceof MInvoice){
+			log.fine("MInvoice KLS Event AFTER COMPLETE: "+po.get_ID());
 			//https://siameseninja.atlassian.net/jira/software/projects/MT/boards/1?selectedIssue=MT-13
 			//to apply Value DocumentSequence if exists
 			MSequence sequence = new Query(Env.getCtx(),MSequence.Table_Name,MSequence.COLUMNNAME_Name+"=? AND "+MSequence.COLUMNNAME_AD_Client_ID+"=?", null)
@@ -68,14 +69,12 @@ public class KLS_FA_TransferDocEvent extends AbstractEventHandler {
 				asset.set_ValueNoCheck(MAsset.COLUMNNAME_Value, value);
 				asset.saveEx(trxName);
 			}
-			
-			
 		}
 
 		else if (po instanceof MKLS_FA_Transfer){
  
 				MKLS_FA_Transfer modelpo = (MKLS_FA_Transfer)po;
-				log.fine("MKLS_FA_Transfer changed: "+modelpo.get_ID());
+				log.fine("MKLS_FA_Transfer AFTER COMPLETE: "+modelpo.get_ID());
 				// **DO SOMETHING** ;				// get org_id from KLS_FA_Transfer				// get Bpartner_id from KLS_FA_Transfer				// get location_id from KLS_FA_Transfer				// get asset_id from KLS_FA_TransferLine				// update org_id, Bpartner_id, location_id in A_Asset				MKLS_FA_Transfer fat = (MKLS_FA_Transfer) po ;				int orgid = fat.getAD_Org_ID();				int bpartnerid = fat.getC_BPartnerSR_ID();				int locationid = fat.getM_LocatorTo_ID();				List<MKLS_FA_Transfer_Dt> fatlines = new Query(Env.getCtx(),MKLS_FA_Transfer_Dt.Table_Name,MKLS_FA_Transfer.COLUMNNAME_KLS_FA_Transfer_ID+"=?",trxName)						.setParameters(fat.get_ID()).list();				// what did we get?  fatlines				for (MKLS_FA_Transfer_Dt fatline:fatlines) {					int assetid =fatline.getA_Asset_ID();					MAsset ass = new MAsset(Env.getCtx(),assetid,trxName);					ass.setAD_Org_ID(orgid);					ass.setC_BPartner_ID(bpartnerid);					ass.setM_Locator_ID(locationid);					ass.saveEx(trxName);				}
 			}
 		

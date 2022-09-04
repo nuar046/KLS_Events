@@ -19,6 +19,7 @@ package org.klsfa.model;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.Properties;
 import org.compiere.model.*;
 import org.compiere.util.Env;
@@ -32,7 +33,7 @@ public class X_TH_PR_Bid extends PO implements I_TH_PR_Bid, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20220901L;
+	private static final long serialVersionUID = 20220903L;
 
     /** Standard Constructor */
     public X_TH_PR_Bid (Properties ctx, int TH_PR_Bid_ID, String trxName)
@@ -220,34 +221,6 @@ public class X_TH_PR_Bid extends PO implements I_TH_PR_Bid, I_Persistent
 		return ii.intValue();
 	}
 
-	public org.compiere.model.I_C_Period getC_Period() throws RuntimeException
-    {
-		return (org.compiere.model.I_C_Period)MTable.get(getCtx(), org.compiere.model.I_C_Period.Table_Name)
-			.getPO(getC_Period_ID(), get_TrxName());	}
-
-	/** Set Period.
-		@param C_Period_ID 
-		Period of the Calendar
-	  */
-	public void setC_Period_ID (int C_Period_ID)
-	{
-		if (C_Period_ID < 1) 
-			set_Value (COLUMNNAME_C_Period_ID, null);
-		else 
-			set_Value (COLUMNNAME_C_Period_ID, Integer.valueOf(C_Period_ID));
-	}
-
-	/** Get Period.
-		@return Period of the Calendar
-	  */
-	public int getC_Period_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_Period_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	public org.compiere.model.I_C_Project getC_Project() throws RuntimeException
     {
 		return (org.compiere.model.I_C_Project)MTable.get(getCtx(), org.compiere.model.I_C_Project.Table_Name)
@@ -294,6 +267,23 @@ public class X_TH_PR_Bid extends PO implements I_TH_PR_Bid, I_Persistent
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;
+	}
+
+	/** Set Document Date.
+		@param DateDoc 
+		Date of the Document
+	  */
+	public void setDateDoc (Timestamp DateDoc)
+	{
+		set_Value (COLUMNNAME_DateDoc, DateDoc);
+	}
+
+	/** Get Document Date.
+		@return Date of the Document
+	  */
+	public Timestamp getDateDoc () 
+	{
+		return (Timestamp)get_Value(COLUMNNAME_DateDoc);
 	}
 
 	/** Set Description.

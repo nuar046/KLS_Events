@@ -58,14 +58,7 @@ public class MTH_PR_Bid extends X_TH_PR_Bid implements DocAction {
 		super(ctx, rs, trxName);
 
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void setDocStatus(String newStatus) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	} 
 	
 	/**	Process Message 			*/
 	private String		m_processMsg = null;

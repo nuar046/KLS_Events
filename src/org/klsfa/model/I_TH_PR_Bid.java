@@ -137,21 +137,6 @@ public interface I_TH_PR_Bid
 
 	public org.compiere.model.I_C_Currency getC_Currency() throws RuntimeException;
 
-    /** Column name C_Period_ID */
-    public static final String COLUMNNAME_C_Period_ID = "C_Period_ID";
-
-	/** Set Period.
-	  * Period of the Calendar
-	  */
-	public void setC_Period_ID (int C_Period_ID);
-
-	/** Get Period.
-	  * Period of the Calendar
-	  */
-	public int getC_Period_ID();
-
-	public org.compiere.model.I_C_Period getC_Period() throws RuntimeException;
-
     /** Column name C_Project_ID */
     public static final String COLUMNNAME_C_Project_ID = "C_Project_ID";
 
@@ -195,6 +180,19 @@ public interface I_TH_PR_Bid
 	  * Currency Conversion Rate
 	  */
 	public BigDecimal getCurrencyRate();
+
+    /** Column name DateDoc */
+    public static final String COLUMNNAME_DateDoc = "DateDoc";
+
+	/** Set Document Date.
+	  * Date of the Document
+	  */
+	public void setDateDoc (Timestamp DateDoc);
+
+	/** Get Document Date.
+	  * Date of the Document
+	  */
+	public Timestamp getDateDoc();
 
     /** Column name Description */
     public static final String COLUMNNAME_Description = "Description";

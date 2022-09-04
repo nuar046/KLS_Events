@@ -59,13 +59,6 @@ public class MKLS_FA_Transfer_Dt extends X_KLS_FA_Transfer_Dt implements DocActi
 
 		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public void setDocStatus(String newStatus) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 	/**	Process Message 			*/
 	private String		m_processMsg = null;
